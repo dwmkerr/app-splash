@@ -1,0 +1,47 @@
+{
+  "name": "app-splash",
+  "version": "0.1.0",
+  "description": "Automatic icon resizing for Mobile Apps. Supports Native, Cordova and React Native. Inspired by cordova-icon.",
+  "main": "index.js",
+  "bin": {
+    "app-icon": "./bin/app-icon.js"
+  },
+  "scripts": {
+    "start": "./bin/app-splash.js",
+    "test": "mocha -t 10000 './src/**/*.specs.js'",
+    "test:debug": "mocha -d --inspect-brk -w --inspect './src/**/*.specs.js'",
+    "cov": "nyc --reporter text --reporter html --reporter lcov --report-dir './artifacts/coverage' -x './src/**/*.specs.js' mocha --timeout 10000 './src/**/*.specs.js'",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwmkerr/app-splash.git"
+  },
+  "keywords": [
+    "cordvoa",
+    "react-native",
+    "splash",
+    "app-splash",
+    "resize"
+  ],
+  "author": "Dave Kerr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dwmkerr/app-splash/issues"
+  },
+  "homepage": "https://github.com/dwmkerr/app-splash#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.0.2",
+    "nyc": "^11.0.1"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "command-exists": "^1.0.2",
+    "commander": "^2.9.0",
+    "mkdirp": "^0.5.1"
+  }
+}

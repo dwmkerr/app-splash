@@ -1,0 +1,14 @@
+machine:
+  node:
+    version: 6
+general:
+  artifacts:
+    # Test splashes are useful artifacts - especially when tests fail!
+    - "src/label/test-splashes"
+    - "src/resize/test-splashes"
+test:
+  override:
+    - npm run cov
+    - npm run lint
+  post:
+    - bash <(curl -s https://codecov.io/bash)
