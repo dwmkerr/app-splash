@@ -1,0 +1,15 @@
+{
+  "images" : [{
+      "orientation" : "portrait",
+      "idiom": "iphone",
+      "extent" : "full-screen",
+      "minimum-system-version": "8.0",
+      "scale" : "3x",
+    }
+  ],
+    "info" : {
+      "author" : "xcode",
+      "version" : 1
+    }
+  }
+}

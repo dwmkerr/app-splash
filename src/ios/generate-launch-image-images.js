@@ -2,10 +2,10 @@ const path = require('path');
 const fs = require('fs');
 
 const resizeImage = require('../resize/resize-image');
-const contentsTemplate = require('./AppIcon.iconset.Contents.template.json');
+const contentsTemplate = require('./LaunchImage.launchimage.Contents.template.json');
 
-//  Generate xCode icons given an iconset folder.
-module.exports = function generateIconSetIcons(sourceIcon, iconset) {
+//  Generate xCode launch images given a launchimage folder.
+module.exports = function generateLaunchImageImages(sourceIcon, iconset) {
   return new Promise((resolve, reject) => {
     //  Build the results object.
     const results = {

@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const generateIconsetIcons = require('./generate-iconset-icons');
+const generateLaunchImageImages = require('./generate-launch-image-images');
 const deleteIfExists = require('../utils/delete-if-exists');
 const fileExists = require('../utils/file-exists');
 
@@ -30,7 +30,7 @@ describe('generate-iconset-icons', () => {
     //  Delete all of the files we're expecting to create, then generate them.
     return Promise.all(files.map(deleteIfExists))
       .then(() => (
-        generateIconsetIcons(sourceIcon, 'test/ReactNativeIconTest/ios/ReactNativeIconTest/Images.xcassets/AppIcon.appiconset')
+        generateLaunchImageImages(sourceIcon, 'test/ReactNativeIconTest/ios/ReactNativeIconTest/Images.xcassets/AppIcon.appiconset')
       ))
       .then(() => Promise.all(files.map(fileExists)))
       .then((filesDoExist) => {
@@ -64,7 +64,7 @@ describe('generate-iconset-icons', () => {
     //  Delete all of the files we're expecting to create, then generate them.
     return Promise.all(files.map(deleteIfExists))
       .then(() => (
-        generateIconsetIcons(sourceIcon, 'test/CordovaApp/platforms/ios/ionic_app/Images.xcassets/AppIcon.appiconset')
+        generateLaunchImageImages(sourceIcon, 'test/CordovaApp/platforms/ios/ionic_app/Images.xcassets/AppIcon.appiconset')
       ))
       .then(() => Promise.all(files.map(fileExists)))
       .then((filesDoExist) => {
@@ -98,7 +98,7 @@ describe('generate-iconset-icons', () => {
     //  Delete all of the files we're expecting to create, then generate them.
     return Promise.all(files.map(deleteIfExists))
       .then(() => (
-        generateIconsetIcons(sourceIcon, 'test/NativeApp/ios/native_app/Assets.xcassets/AppIcon.appiconset')
+        generateLaunchImageImages(sourceIcon, 'test/NativeApp/ios/native_app/Assets.xcassets/AppIcon.appiconset')
       ))
       .then(() => Promise.all(files.map(fileExists)))
       .then((filesDoExist) => {

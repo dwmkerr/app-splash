@@ -4,17 +4,17 @@ const validateParameters = require('./validate-parameters');
 describe('validateParameters', () => {
   function validParameters() {
     return {
-      sourceIcon: 'icon.png',
+      sourceImage: 'splash.png',
       searchRoot: './',
-      platforms: 'android,ios',
+      platforms: 'ios',
     };
   }
 
-  it('should provide a default source icon', () => {
+  it('should provide a default source image', () => {
     const params = validParameters();
-    delete params.sourceIcon;
+    delete params.sourceImage;
     const parameters = validateParameters(params);
-    assert.equal(parameters.sourceIcon, 'icon.png');
+    assert.equal(parameters.sourceImage, 'splash.png');
   });
 
   it('should provide a default search root', () => {
@@ -28,12 +28,12 @@ describe('validateParameters', () => {
     const params = validParameters();
     delete params.platforms;
     const parameters = validateParameters(params);
-    assert.deepEqual(parameters.platforms, ['android', 'ios']);
+    assert.deepEqual(parameters.platforms, ['ios']);
   });
 
   it('should reject invalid platforms', () => {
     const params = validParameters();
-    params.platforms = 'android,jos';
+    params.platforms = 'jos';
     assert.throws(() => validateParameters(params), /jos.*not a valid platform/);
   });
 });
