@@ -3,7 +3,7 @@ module.exports = function validateParameters(parameters) {
   const sourceImage = parameters.sourceImage || 'splash.png';
 
   //  Validate or assign the search path.
-  const searchRoot = parameters.searchRoot || './';
+  const searchRoot = parameters.search || './';
 
   //  Validate or assign the platforms.
   const platformsString = parameters.platforms || 'ios';

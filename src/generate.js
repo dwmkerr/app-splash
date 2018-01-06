@@ -13,11 +13,14 @@ module.exports = function generate(parameters) {
   const results = { launchImages: [] };
 
   return findXCAssetsFolders(searchRoot)
-    .then((xcAssetsFolder) => {
+    .then((xcAssetsFolders) => {
       //  Ensure we have a launch images folder.
-      const launchImagesFolder = path.join(xcAssetsFolder, 'LaunchImages.launchimages');
-      if (!fs.existsSync(launchImagesFolder)) fs.mkdirSync(launchImagesFolder);
-      return launchImagesFolder;
+      const launchImagesFolders = xcAssetsFolders.map((xcAssetsFolder) => {
+        const launchImagesFolder = path.join(xcAssetsFolder, 'LaunchImage.launchimage');
+        if (!fs.existsSync(launchImagesFolder)) fs.mkdirSync(launchImagesFolder);
+        return launchImagesFolder;
+      });
+      return launchImagesFolders;
     })
     .then(launchImages => Promise.all(launchImages.map((launchImageFolder) => {
       if (!platforms.includes('ios')) return null;
@@ -27,8 +30,8 @@ module.exports = function generate(parameters) {
       return generateLaunchImageImages(sourceImage, launchImageFolder)
         .then(({ images }) => {
           results.launchImages.push({ launchImageFolder, images });
-          launchImages.forEach((launchImage) => {
-            console.log(`    ${chalk.green('✓')}  Generated ${launchImage}`);
+          images.forEach((image) => {
+            console.log(`    ${chalk.green('✓')}  Generated ${image}`);
           });
           console.log(`    ${chalk.green('✓')}  Updated Contents.json`);
         });

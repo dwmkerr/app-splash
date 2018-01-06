@@ -7,6 +7,6 @@ module.exports = function findXCAssetsFolders(searchRoot) {
     if (file.match(/node_modules/)) return false;
 
     //  only grab the launchimage folders.
-    return file.match(/Images.xcassets/) && stat.isDirectory();
+    return file.match(/Images.xcassets$/) && stat.isDirectory();
   });
 };

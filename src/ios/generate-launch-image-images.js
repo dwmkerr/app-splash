@@ -13,8 +13,14 @@ module.exports = function generateLaunchImageImages(sourceImage, launchImageFold
       contentsPath: null,
     };
 
-    //  We've got the launch image folder. Get the contents Json.
+    //  Normally we would modify the contents file, but it might not exist. If
+    //  it doesn't, then create it from the template.
     const contentsPath = path.join(launchImageFolder, 'Contents.json');
+    if (!fs.existsSync(contentsPath)) {
+      fs.writeFileSync(contentsPath, JSON.stringify(contentsTemplate, null, 2), 'utf-8');
+    }
+
+    //  We've got the launch image folder. Get the contents Json.
     const contents = JSON.parse(fs.readFileSync(contentsPath, 'utf8'));
     contents.images = [];
 
@@ -26,7 +32,7 @@ module.exports = function generateLaunchImageImages(sourceImage, launchImageFold
       const targetSize = image.size.split('x').map(p => p * targetScale).join('x');
       return resizeImage(sourceImage, targetPath, targetSize)
         .then(() => {
-          results.icons.push(targetName);
+          results.images.push(targetName);
           contents.images.push({
             size: image.size,
             idiom: image.idiom,
