@@ -1,5 +1,7 @@
 const chalk = require('chalk');
-const findLaunchImageFolders = require('./ios/find-launch-image-folders');
+const fs = require('fs');
+const path = require('path');
+const findXCAssetsFolders = require('./ios/find-xcassets-folders');
 const generateLaunchImageImages = require('./ios/generate-launch-image-images');
 const validateParameters = require('./validate-parameters');
 
@@ -10,17 +12,23 @@ module.exports = function generate(parameters) {
   //  Set up the results object.
   const results = { launchImages: [] };
 
-  return findLaunchImageImages(searchRoot)
-    .then(launchImages => Promise.all(launchImages.map((launchImage) => {
+  return findXCAssetsFolders(searchRoot)
+    .then((xcAssetsFolder) => {
+      //  Ensure we have a launch images folder.
+      const launchImagesFolder = path.join(xcAssetsFolder, 'LaunchImages.launchimages');
+      if (!fs.existsSync(launchImagesFolder)) fs.mkdirSync(launchImagesFolder);
+      return launchImagesFolder;
+    })
+    .then(launchImages => Promise.all(launchImages.map((launchImageFolder) => {
       if (!platforms.includes('ios')) return null;
 
-      console.log(`Found iOS launch image: ${launchImage}...`);
+      console.log(`Found iOS launch image folder: ${launchImageFolder}...`);
 
-      return generateLaunchImageImages(sourceIcon, iconset)
+      return generateLaunchImageImages(sourceImage, launchImageFolder)
         .then(({ images }) => {
-          results.launchImages.push({ launchImage, images });
+          results.launchImages.push({ launchImageFolder, images });
           launchImages.forEach((launchImage) => {
-            console.log(`    ${chalk.green('✓')}  Generated ${launchImages}`);
+            console.log(`    ${chalk.green('✓')}  Generated ${launchImage}`);
           });
           console.log(`    ${chalk.green('✓')}  Updated Contents.json`);
         });

@@ -14,5 +14,5 @@ module.exports = function validateParameters(parameters) {
     }
   }
 
-  return { sourceIcon, searchRoot, platforms };
+  return { sourceImage, searchRoot, platforms };
 };
