@@ -26,6 +26,10 @@ module.exports = function generateLaunchImageImages(sourceImage, launchImageFold
 
     //  Generate each image in the full icon set, updating the contents.
     return Promise.all(contentsTemplate.images.map((image) => {
+      if (!image.size) {
+        console.log(`Warning: unknown image size for ${image.idiom}`);
+        image.size = '640x960';
+      }
       const targetName = `${image.idiom}-${image.size}-${image.scale}.png`;
       const targetPath = path.join(launchImageFolder, targetName);
       const targetScale = parseInt(image.scale.slice(0, 1), 10);
