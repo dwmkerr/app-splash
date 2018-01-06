@@ -1,7 +1,7 @@
 {
   "name": "app-splash",
   "version": "0.1.0",
-  "description": "Automatic icon resizing for Mobile Apps. Supports Native, Cordova and React Native. Inspired by cordova-icon.",
+  "description": "Automatic splash screen generation and resizing for Mobile Apps. Supports Native, React Native, Cordova, Xamarin and more. The little brother of 'app-icon'.",
   "main": "index.js",
   "bin": {
     "app-icon": "./bin/app-icon.js"

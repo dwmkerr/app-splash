@@ -1,6 +1,6 @@
 # app-splash [![CircleCI](https://circleci.com/gh/dwmkerr/app-splash.svg?style=shield)](https://circleci.com/gh/dwmkerr/app-splash) [![codecov](https://codecov.io/gh/dwmkerr/app-splash/branch/master/graph/badge.svg)](https://codecov.io/gh/dwmkerr/app-splash) [![dependencies Status](https://david-dm.org/dwmkerr/app-splash/status.svg)](https://david-dm.org/dwmkerr/app-splash) [![devDependencies Status](https://david-dm.org/dwmkerr/app-splash/dev-status.svg)](https://david-dm.org/dwmkerr/app-splash?type=dev)
 
-Automatic icon resizing for Mobile Apps. Supports Native, Cordova and React Native. Also supports labelling of app icons. Inspired by [cordova-icon](https://github.com/AlexDisler/cordova-icon).
+Automatic splash screen generation and resizing for Mobile Apps. Supports Native, React Native, Cordova, Xamarin and more. The little brother of [`app-icon`](https://github.com/dwmkerr/app-icon).
 
 <img src="./assets/banner.png" width="614" alt="Banner">
 
