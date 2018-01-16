@@ -24,12 +24,16 @@ module.exports = function generateLaunchImageImages(sourceImage, launchImageFold
     const contents = JSON.parse(fs.readFileSync(contentsPath, 'utf8'));
     contents.images = [];
 
+    //  We currently have an issue where not each image has a size, so for now
+    //  skip any image which doesn't yet have a size defined.
+    const images = contentsTemplate.images.filter((image) => {
+      if (image.size) return true;
+      console.log(`Warning: unknown image size for ${image.idiom} ${image.orientation} ${image.extent} ${image.scale}`);
+      return false;
+    });
+
     //  Generate each image in the full icon set, updating the contents.
-    return Promise.all(contentsTemplate.images.map((image) => {
-      if (!image.size) {
-        console.log(`Warning: unknown image size for ${image.idiom}`);
-        image.size = '640x960';
-      }
+    return Promise.all(images.map((image) => {
       const targetName = `${image.idiom}-${image.size}-${image.scale}.png`;
       const targetPath = path.join(launchImageFolder, targetName);
       const targetScale = parseInt(image.scale.slice(0, 1), 10);
@@ -38,7 +42,10 @@ module.exports = function generateLaunchImageImages(sourceImage, launchImageFold
         .then(() => {
           results.images.push(targetName);
           contents.images.push({
-            size: image.size,
+            orientation: image.orientation,
+            extent: image.extent,
+            'minimum-system-version': image['minimum-system-version'],
+            subtype: image.subtype,
             idiom: image.idiom,
             scale: image.scale,
             filename: targetName,

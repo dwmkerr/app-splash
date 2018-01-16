@@ -4,7 +4,7 @@
   "description": "Automatic splash screen generation and resizing for Mobile Apps. Supports Native, React Native, Cordova, Xamarin and more. The little brother of 'app-icon'.",
   "main": "index.js",
   "bin": {
-    "app-icon": "./bin/app-icon.js"
+    "app-splash": "./bin/app-splash.js"
   },
   "scripts": {
     "start": "./bin/app-splash.js",
@@ -42,6 +42,7 @@
     "chalk": "^1.1.3",
     "command-exists": "^1.0.2",
     "commander": "^2.9.0",
+    "imagemagick-cli": "^0.1.3",
     "mkdirp": "^0.5.1"
   }
 }
